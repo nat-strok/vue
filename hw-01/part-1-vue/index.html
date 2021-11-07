@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>part-1-vue</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div id="app">
+
+        <div class="tabs-nav">
+            <button class="tabs-btn" v-for="item in tabs" v-bind:class="{'active-btn': item.isActive}" v-on:click="setActive(item, tabs)" v-html="item.nav"></button>
+        </div>
+
+        <ul class="tabs-content" v-bind:class="currentColor.name">
+            <li v-for="text in currentTab.content" v-bind:key="text.id" v-html="text"></li>
+        </ul>
+
+        <div class="tabs-style">
+            <button class="tabs-btn" v-for="item in colors" v-bind:class="[item.name, item.isActive ? 'active-btn' : '']" v-on:click="setActive(item, colors)" v-html="item.name"></button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
