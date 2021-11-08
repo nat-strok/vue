@@ -14,15 +14,25 @@
     <div id="app">
 
         <div class="tabs-nav">
-            <button class="tabs-btn" v-for="item in tabs" v-bind:class="{'active-btn': item.isActive}" v-on:click="setActive(item, tabs)" v-html="item.nav"></button>
+            <button type="button"
+                    v-for="item in tabs"
+                    v-bind:class="['tabs-btn', item.isActive ? 'active-btn' : '']"
+                    v-on:click="setActive(item, tabs)"
+                    v-html="item.nav"></button>
         </div>
 
-        <ul class="tabs-content" v-bind:class="currentColor.name">
-            <li v-for="text in currentTab.content" v-bind:key="text.id" v-html="text"></li>
+        <ul v-bind:class="['tabs-content', currentColor.name]">
+            <li v-for="text in currentTab.content"
+                v-bind:key="text.id"
+                v-html="text"></li>
         </ul>
 
         <div class="tabs-style">
-            <button class="tabs-btn" v-for="item in colors" v-bind:class="[item.name, item.isActive ? 'active-btn' : '']" v-on:click="setActive(item, colors)" v-html="item.name"></button>
+            <button type="button"
+                    v-for="item in colors"
+                    v-bind:class="['tabs-btn', item.name, item.isActive ? 'active-btn' : '']"
+                    v-on:click="setActive(item, colors)"
+                    v-html="item.name"></button>
         </div>
 
     </div>

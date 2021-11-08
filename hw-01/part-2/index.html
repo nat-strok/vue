@@ -12,15 +12,27 @@
 <div class="container" id="app">
 
 
-    <button v-bind:class="popupBtnStart.class" v-html="popupBtnStart.text" v-on:click="setActive">
+    <button type="button"
+            v-bind:class="popupBtnStart.class"
+            v-html="popupBtnStart.text"
+            v-on:click="setActive">
     </button>
 
-    <div class="overlay" v-show="popup.isActive" v-on:click="setInactive"></div>
+    <div class="overlay"
+         v-show="popup.isActive"
+         v-on:click="setInactive"></div>
 
-    <div class="popup" v-bind:class="currentColor.name" v-show="popup.isActive">
-        <span class="popup-close" v-on:click="setInactive">&#10006;</span>
+    <div class="popup"
+         v-bind:class="currentColor.name"
+         v-show="popup.isActive">
+        <span class="popup-close"
+              v-on:click="setInactive">&#10006;</span>
         <div class="popup-body">
-            <button v-for="item in colors" v-bind:key="item.name" v-bind:class="['popup-color-btn', item.name]" v-html="item.name" v-on:click="changeColor(item)">
+            <button type="button"
+                    v-for="item in colors"
+                    v-bind:key="item.name"
+                    v-bind:class="['popup-color-btn', item.name]"
+                    v-html="item.name" v-on:click="changeColor(item)">
             </button>
         </div>
     </div>

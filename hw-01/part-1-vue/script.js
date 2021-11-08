@@ -38,9 +38,7 @@ let app = new Vue({
     },
     methods: {
         setActive(item, arr) {
-            arr.forEach(el => {
-                el.isActive = el === item;
-            })
+            arr.forEach(el => el.isActive = el === item);
         }
     },
     computed: {

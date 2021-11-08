@@ -35,9 +35,7 @@ let app = new Vue({
             this.popup.isActive = false;
         },
         changeColor(item) {
-            this.colors.forEach(el => {
-                el.isActive = el === item;
-            })
+            this.colors.forEach(el => el.isActive = el === item);
         }
     },
     computed: {

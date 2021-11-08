@@ -162,3 +162,5 @@ $RECYCLE.BIN/
 /.idea/frontend-pro.iml
 /.idea/.gitignore
 /.idea/misc.xml
+
+/.idea/vue.iml
