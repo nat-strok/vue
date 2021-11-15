@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>hw-2 part-1</title>
+</head>
+<style>
+    .guest-card {margin-top: 10px; padding: 15px;}
+    .guest-card p {margin: 0;}
+    .guest-name {font-weight: bold;}
+    .guest-card:nth-child(odd) {background: silver;}
+    .guest-card input:checked ~ div {text-decoration: line-through;}
+    label {display: flex;}
+    input[type='checkbox'] {margin-right: 10px;}
+    .guest-search {padding: 20px 0 0;}
+    .guest-search label {display: inline-block; padding-right: 15px;}
+    .guest-number {padding-bottom: 20px;}
+    .highlight {color: red;}
+    .guest-btn button {margin: 20px 20px 20px 0;}
+    strong, .highlight {color: red;}
+</style>
+<body>
+
+<div id="app">
+
+    <guests-wrap></guests-wrap>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="guests.js"></script>
+
+<script src="components/guest-card.js"></script>
+<script src="components/guest-search.js"></script>
+<script src="components/guest-btn-more.js"></script>
+<script src="components/guest-btn-actual.js"></script>
+<script src="components/guests-wrap.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

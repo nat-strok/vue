@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>hw-2 part-2</title>
+</head>
+<style>
+    .post {padding: 15px; border: 1px solid #000; margin-bottom: 20px;}
+    .head-post {padding-bottom: 15px; font-weight: bold;}
+</style>
+<body>
+
+<div id="app">
+
+    <div v-if='loaded'>Loading...</div>
+    <news-list v-else :news-list="newsList"></news-list>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="components/news-card.js"></script>
+<script src="components/news-list.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
