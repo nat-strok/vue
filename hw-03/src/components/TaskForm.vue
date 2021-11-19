@@ -2,14 +2,15 @@
 
   <form v-on:submit.prevent="onSubmit">
     <h3>Добавить задачу:</h3>
-    <div class="contact-form">
-      <input type="text" v-model="taskName" placeholder="Название задачи">
-      <input type="text" v-model="taskDescription" placeholder="Описание задачи">
-      <input type="text" v-model="taskImg" placeholder="Ссылка на картинку">
+    <div>
+      <input type="text" v-model="newTask.name" placeholder="Название задачи">
+      <input type="text" v-model="newTask.description" placeholder="Описание задачи">
+      <input type="text" v-model="newTask.img" placeholder="Ссылка на картинку">
     </div>
     <div>
-      <button type="submit">Добавить</button> <br />
-      <p v-show="!taskName || !taskDescription || !taskImg">Заполните все поля</p>
+      <button type="submit">Добавить</button>
+      <br/>
+      <p v-show="!notEmpty">Заполните все поля</p>
     </div>
   </form>
 
@@ -20,36 +21,31 @@ export default {
   name: 'TaskForm',
   props: {
     idTaskCount: '',
+    task: {
+      type: Object,
+      required: true
+    }
   },
   data() {
     return {
-      taskId: this.idTaskCount,
-      taskName: null,
-      taskDescription: null,
-      taskImg: null,
-      taskDate: null
+      newTask: this.task,
+      notEmpty: true,
     }
   },
   methods: {
 
-    // создает новый объект и передает его в родительский элемент
+    // проверяет, что все поля формы заполнены
+    // если нет, меняет значение notEmpty и показывается сообщение "Заполните все поля"
+    // передает объект со значениями из формы и событие add
+    // очищает поля формы
     onSubmit() {
-      if ((this.taskName && this.taskDescription && this.taskImg)) {
-        let newTask = {
-          taskId: this.idTaskCount,
-          taskName: this.taskName,
-          taskDescription: this.taskDescription,
-          taskImg: this.taskImg,
-          taskDate: new Date().toLocaleString(),
-          isEdited: false,
-          isDone: false
-        };
-        this.$emit('add', newTask);
-        this.taskId = null;
-        this.taskName = null;
-        this.taskDescription = null;
-        this.taskImg = null;
-        this.taskDate = null
+      if ((this.newTask.name && this.newTask.description && this.newTask.img)) {
+        this.notEmpty = true;
+        this.$emit('update:task', this.newTask);
+        this.$emit('add');
+        this.newTask = {};
+      } else {
+        this.notEmpty = false;
       }
     },
   }

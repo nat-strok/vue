@@ -10,7 +10,7 @@
     </button>
 
     <task-form v-show="logIn"
-               :idTaskCount="usersData[curUs].idTaskCount"
+               :task.sync="newTask"
                @add="addTask" />
 
     <div v-show="logIn" v-for="task in usersData[curUs].taskList" :key="task.id">
@@ -24,10 +24,8 @@
 
     <popup-wrapper :popup="popup" v-show="popup.isActive">
 
-      <!--          :pass.sync="newUserPassword"-->
-      <login-popup
-          :user.sync="newUserData"
-          @submitUser="logInSubmit" />
+      <login-popup  :user.sync="newUserData"
+                    @submitUser="logInSubmit" />
       <div v-show="wrongUserData" class="error">Неверный логин или пароль</div>
 
     </popup-wrapper>
@@ -91,6 +89,7 @@ export default {
         }],
       }],
 
+      newTask: {},
       curUs: 1,
       currentUser: "",
       idUserCount: 2,
@@ -185,11 +184,24 @@ export default {
     },
 
     // добавление задачи
-    // принимает объект из task-card и пушит его в массив задач активного пользователя
+    // принимает объект с данными, переданными из task-card,
+    // создает объект с использованием этих данных,
+    // записывает в поле taskId значение счетчика для ID задач активного пользователя
+    // в поле taskDate дату и время,
+    // значение false в поля, которые отвечают за то, показывать ли задачу как выполненную и отредактированную
+    // пушит созданный объект в массив задач активного пользователя
     // увеличивает на единицу счетчик для присвоения ID задачам того же пользователя
-    addTask(value) {
-      if (!value) return;
-      this.usersData[this.curUs].taskList.push(value);
+    addTask() {
+      let newTask = {
+        taskId: this.usersData[this.curUs].idTaskCount,
+        taskName: this.newTask.name,
+        taskDescription: this.newTask.description,
+        taskImg: this.newTask.img,
+        taskDate: new Date().toLocaleString(),
+        isEdited: false,
+        isDone: false
+      };
+      this.usersData[this.curUs].taskList.push(newTask);
       this.usersData[this.curUs].idTaskCount += 1;
     },
 
