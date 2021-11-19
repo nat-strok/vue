@@ -24,9 +24,9 @@
 
     <popup-wrapper :popup="popup" v-show="popup.isActive">
 
+      <!--          :pass.sync="newUserPassword"-->
       <login-popup
-          :user.sync="newUserName"
-          :pass.sync="newUserPassword"
+          :user.sync="newUserData"
           @submitUser="logInSubmit" />
       <div v-show="wrongUserData" class="error">Неверный логин или пароль</div>
 
@@ -96,9 +96,7 @@ export default {
       idUserCount: 2,
       logIn: false,
       wrongUserData: false,
-
-      newUserName: "",
-      newUserPassword: "",
+      newUserData: {},
 
       popupBtn: {
         textStart: 'Залогиниться',
@@ -125,7 +123,8 @@ export default {
     // запись данных в localStorage при изменении usersData
     usersData: function () {
       localStorage.setItem('usersData', JSON.stringify(this.usersData));
-    }
+    },
+    deep: true
   },
   methods: {
 
@@ -138,8 +137,8 @@ export default {
     createNewUser() {
       let newUser = {
         userId: this.idUserCount,
-        userName: this.newUserName,
-        userPassword: this.newUserPassword,
+        userName: this.newUserData.name,
+        userPassword: this.newUserData.password,
         idTaskCount: 0,
         taskList: []
       };
@@ -156,8 +155,8 @@ export default {
     closeLoginForm() {
       this.wrongUserData = false;
       this.logIn = true;
-      this.newUserName = null;
-      this.newUserPassword = null;
+      this.newUserData.name = null;
+      this.newUserData.password = null;
       this.popup.isActive = false;
     },
 
@@ -168,11 +167,11 @@ export default {
     // если нет - создает нового пользователя (вызывается функция createNewUser)
     // вызывает функцию closeLoginForm, которая перезаписывает необходимые переменные
     logInSubmit() {
-      if (this.newUserName && this.newUserPassword) {
-        const index = this.usersData.findIndex(item => item.userName === this.newUserName);
+      if (this.newUserData.name && this.newUserData.password) {
+        const index = this.usersData.findIndex(item => item.userName === this.newUserData.name);
         this.curUs = index;
         if (index >= 0) {
-          if (this.usersData[index].userPassword !== this.newUserPassword) {
+          if (this.usersData[index].userPassword !== this.newUserData.password) {
             this.wrongUserData = true;
             this.logIn = false;
             return false;
