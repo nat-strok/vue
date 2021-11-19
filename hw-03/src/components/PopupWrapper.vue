@@ -1,0 +1,77 @@
+<template>
+  <div>
+
+    <div class="overlay"
+         v-on:click="popup.isActive = false"></div>
+
+    <div class="popup">
+        <span class="popup-close"
+              v-on:click="popup.isActive = false">&#10006;</span>
+      <div class="popup-body">
+
+        <slot></slot>
+
+      </div>
+    </div>
+
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'PopupWrapper',
+  props: {
+    popup: {
+      isActive: {
+        type: Boolean,
+        required: true
+      }
+    }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: .5;
+  background-color: silver;
+}
+
+.popup {
+  position: fixed;
+  max-width: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 65vw;
+  margin: auto;
+  padding: 50px 30px 30px;
+  box-shadow: 10px 10px 30px rgba(26, 23, 20, .4);
+  background-color: #fff;
+}
+
+.popup-close {
+  display: block;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 20px;
+  text-align: center;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  opacity: .7;
+  cursor: pointer;
+}
+
+.popup-close:hover {
+  opacity: 1;
+}
+
+</style>
