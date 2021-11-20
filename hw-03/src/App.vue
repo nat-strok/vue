@@ -13,8 +13,7 @@
                :task.sync="newTask"
                @add="addTask" />
 
-    <div v-show="logIn" v-for="task in usersData[curUs].taskList" :key="task.id">
-
+    <div v-show="logIn" v-for="task in usersData[curUs].taskList" :key="task.taskId">
       <task-card :task="task"
                  @deleteTask="deleteTask"
                  @editTask="editTask"
