@@ -5,7 +5,7 @@
       <label>Имя:<br /><input type="text" v-model="newUser.name"></label> <br /><br />
       <label>Пароль:<br /><input type="text" v-model="newUser.password"></label> <br /><br />
       <button type="submit">Войти</button>
-      <div v-show="!newUser.name || !newUser.pass" class="error">Введите все данные</div>
+      <div v-show="!newUser.name || !newUser.password" class="error">Введите все данные</div>
     </form>
 
   </div>
