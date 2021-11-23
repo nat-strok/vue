@@ -33,6 +33,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   margin-top: 60px;
 }
+
+h2 {margin: 60px 0 20px;}
+
 input[type=text] {
   border: 1px solid rgba(0, 0, 0, .4);
   border-radius: 2px;

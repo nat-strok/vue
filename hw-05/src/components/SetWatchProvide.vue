@@ -119,10 +119,6 @@ export default {
   padding: 0 20px;
 }
 
-.wrapper {
-  padding-bottom: 30px;
-}
-
 .blueclass {
   background-color: #2c3e50;
   padding: 5px 8px;
