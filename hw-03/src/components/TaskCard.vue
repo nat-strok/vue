@@ -3,7 +3,7 @@
 
     <div v-show="task.isDone" class="green">{{ "Выполнено" }}</div>
 
-    <img :src=task.taskImg width="50">
+    <img :src=task.taskImg width="50" height="50" alt="">
     <div v-show="!isEditing">{{ 'Задача: ' + task.taskName }}</div>
     <div v-show="!isEditing">{{ 'Описание: ' + task.taskDescription }}</div>
 
@@ -74,9 +74,25 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.task-card {padding: 20px 0;}
-.green {color: white; font-weight: bold; display: block; padding: 3px; background-color: #52b790; max-width: 120px; margin: 10px auto; border-radius: 2px;}
-.btn-small {text-transform: none; padding: 3px;}
+.task-card {
+  margin: 0 auto;
+  padding: 20px 10px;
+  max-width: 310px;
+  box-sizing: border-box;
+}
+
+.green {
+  color: white;
+  font-weight: bold;
+  display: block;
+  padding: 3px;
+  background-color: #52b790;
+  max-width: 120px;
+  margin: 10px auto;
+  border-radius: 2px;
+}
+
+.btn-small {
+  text-transform: none; padding: 3px;}
 </style>
