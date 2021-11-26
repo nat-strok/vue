@@ -4,6 +4,7 @@
     <a href="#"
        v-show="!isShown"
        @click="isShown = !isShown">Вывести разноцветный список</a>
+    <p>разный фон строк - директива classBuilder <br /> рамка вокруг блока - директива afterLoop</p>
 
     <div v-if="isShown"
          v-for="(task, i) in taskList"
@@ -22,7 +23,7 @@
 
 
 <script>
-import afterLoop from './Directives/afterloop'
+import afterLoop from './Directives/afterLoop'
 import classBuilder from './Directives/classBuilder'
 export default {
   name: 'Directives',
