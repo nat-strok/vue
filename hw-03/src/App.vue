@@ -182,12 +182,12 @@ export default {
   },
   methods: {
 
-    // записываеи данные пользователей в localStorage
+    // записывает данные пользователей в localStorage
     saveUserData() {
       localStorage.setItem('usersData', JSON.stringify(this.usersData));
     },
 
-    // записываеи в localStorage переменную для ID пользователей
+    // записывает в localStorage переменную для ID пользователей
     saveUserId() {
       localStorage.setItem('idUserCount', JSON.stringify(this.idUserCount));
     },

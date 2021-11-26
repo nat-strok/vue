@@ -11,7 +11,7 @@
       <button type="submit">Добавить</button>
       <br/>
       <p v-show="!notEmpty">Заполните все поля</p>
-      <p v-show="wrongImgType">Формат изображение должен быть JPG или PNG</p>
+      <p v-show="wrongImgType">Формат изображения должен быть JPG или PNG</p>
     </div>
   </form>
 
