@@ -27,8 +27,8 @@ export const actions = {
   async getSinglePost(postId) {
     try {
       let data = await axios.get('https://jsonplaceholder.typicode.com/posts/' + postId)
-        await this.getCurrentUser(data.data.userId);
         mutations.setSinglePost(data.data);
+        await this.getCurrentUser(data.data.userId);
         mutations.setIsLoaded(true);
     } catch (err) {
       console.log(err);
