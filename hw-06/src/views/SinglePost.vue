@@ -1,15 +1,15 @@
 <template>
   <div>
 
-    <div v-if="!isLoaded && !isLoadedUser">Loading...</div>
+    <div v-if="!isLoaded">Loading...</div>
 
     <div v-else>
       <div class="card-box">
         <div class="card-title bold">{{ singlePost.title }}</div>
         <div class="card-text">{{ singlePost.body }}</div>
-        <span class="card-name">Author of the post: </span>
-        <router-link class="link bold" :to="{name: 'SinglePostAdd', params: {userId: singlePost.userId || currentUser.id}}">{{ currentUser.username }}</router-link>
+        <div class="card-name small">Author of the post: {{ currentUser.username }} </div>
         <br />
+        <router-link class="link bold" :to="{name: 'SinglePostAdd', params: {userId: singlePost.userId || currentUser.id}}">More information about {{ currentUser.username }}</router-link>
         <br />
         <router-link class="link small" :to="{name: 'All Posts'}"> Back to all user's posts </router-link>
       </div>

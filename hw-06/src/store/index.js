@@ -7,7 +7,6 @@ const state = Vue.observable({
   currentUser: [],
   currentPosts: [],
   isLoaded: false,
-  isLoadedUser: false
 })
 
 export const actions = {
@@ -23,17 +22,12 @@ export const actions = {
   },
 
   // принимает ID выбранного сообщения
+  // вызывает getCurrentUser, чтобы получить данные о пользователе с userID данного сообщения
   // получает объект соответствующего ID сообщения и записывает его в переменную singlePost
-  // проверяет соответствие userID в выбранном сообщении ID пользователя
-  // если userID undefined (учитывая resetCurrent должно быть именно так)
-  // или не соответствует ID актуального пользователя (если resetCurrent не сработал),
-  // вызывает getCurrentUser
   async getSinglePost(postId) {
     try {
       let data = await axios.get('https://jsonplaceholder.typicode.com/posts/' + postId)
-      if (data.data.userId !== this.currentUser.id) {
         await this.getCurrentUser(data.data.userId);
-      }
         mutations.setSinglePost(data.data);
         mutations.setIsLoaded(true);
     } catch (err) {
@@ -47,7 +41,6 @@ export const actions = {
     try {
       let data = await axios.get('https://jsonplaceholder.typicode.com/users/' + userId)
       mutations.setCurrentUser(data.data);
-      mutations.setIsLoadedUser(true);
     } catch (err) {
       console.log(err);
     }
@@ -64,13 +57,13 @@ export const actions = {
     }
   },
 
-  // обнуляет переменные, соответствующие выбранному сообщению и пользователю
-  // используется при загрузке страницы со списком сообщений (PostList)
+  // обнуляет значения переменных выбранного сообщения и пользователя
+  // метод используется при загрузке страницы со списком сообщений (PostList),
+  // чтобы для перехода с нее на другое сообщение не показывался текст предыдущего сообщения и имени пользователя
   resetCurrent() {
     mutations.setSinglePost({});
     mutations.setCurrentUser({});
     mutations.setIsLoaded(false);
-    mutations.setIsLoadedUser(false);
   }
 }
 
@@ -80,7 +73,6 @@ export const mutations = {
   setCurrentUser: payload => state.currentUser = payload,
   setCurrentPosts: payload => state.currentPosts = payload,
   setIsLoaded: payload => state.isLoaded = payload,
-  setIsLoadedUser: payload => state.isLoaded = payload
 }
 
 export const getters = {
@@ -89,5 +81,4 @@ export const getters = {
   currentUser: () => state.currentUser,
   currentPosts: () => state.currentPosts,
   isLoaded: () => state.isLoaded,
-  isLoadedUser: () => state.isLoaded
 }

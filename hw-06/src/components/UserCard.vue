@@ -4,9 +4,7 @@
       <router-view name="menu"/>
       <router-view name="subNav"/>
 
-      <div v-if="!isLoaded">Loading info...</div>
-
-      <div v-else class="card-box">
+      <div class="card-box">
         <div class="card-title">Username: <strong>{{ currentUser.username }}</strong></div>
 
         <table class="user-info">
@@ -85,7 +83,7 @@ export default {
   vertical-align: baseline;
 }
 
-.user-info {
+.user-info td:first-child {
   font-style: italic;
 }
 

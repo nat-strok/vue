@@ -1,9 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
-import Menu from '@/components/Menu'
-import SubNav from '@/components/SubNav'
-
+import Menu from '../components/Menu'
+import SubNav from '../components/SubNav'
 import Home from '../views/Home'
 import List from '../views/List'
 import Item from '../views/Item'
