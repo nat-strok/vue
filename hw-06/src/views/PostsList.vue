@@ -42,18 +42,4 @@ export default {
 .cards > div {
   padding-bottom: 16px;
 }
-/*.cards {*/
-/*  display: flex;*/
-/*  flex-flow: row wrap;*/
-/*  gap: 20px;*/
-/*}*/
-
-/*.card-link-box {*/
-/*  border: 1px solid silver;*/
-/*  border-radius: 6px;*/
-/*  width: 200px;*/
-/*  padding: 10px;*/
-/*  flex: 1 0 200px;*/
-/*  text-align: left;*/
-/*}*/
 </style>
