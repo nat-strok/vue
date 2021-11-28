@@ -2,10 +2,28 @@
   <div>
     <h1>Item page</h1>
 
-    <p><strong> {{ this.$route.params.data.text1 }} </strong></p>
-    <p> {{ this.$route.params.data.text2 }} </p>
+    <div>
+      <p><strong>{{ item.title }}</strong></p>
+      <p>{{ item.body }}</p>
+    </div>
 
     <router-link :to="{name: 'List'}"> Return to List </router-link>
 
   </div>
 </template>
+
+<script>
+import posts from '../posts'
+
+export default {
+  name: 'Item',
+  data() {
+    return {
+      item: {}
+    }
+  },
+  created() {
+    this.item = posts.find(item => item.id == this.$route.params.id)
+  }
+}
+</script>
