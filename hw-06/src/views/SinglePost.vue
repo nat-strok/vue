@@ -9,7 +9,7 @@
         <div class="card-text">{{ singlePost.body }}</div>
         <div class="card-name small">Author of the post: {{ currentUser.username }} </div>
         <br />
-        <router-link class="link bold" :to="{name: 'SinglePostAdd', params: {userId: singlePost.userId || currentUser.id}}">More information about {{ currentUser.username }}</router-link>
+        <router-link class="link bold" :to="{name: 'SinglePostAdd', params: {userId: singlePost.userId}}">More information about {{ currentUser.username }}</router-link>
         <br />
         <router-link class="link small" :to="{name: 'All Posts'}"> Back to all user's posts </router-link>
       </div>
