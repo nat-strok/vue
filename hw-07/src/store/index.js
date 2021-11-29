@@ -13,18 +13,18 @@ export default new Vuex.Store({
   },
   mutations: {
     INCREMENT(state) {
-      state.count++
+      state.count++;
     },
     DECREMENT(state) {
-      state.count--
+      state.count--;
     }
   },
   actions: {
     increment({commit}) {
-      commit('INCREMENT')
+      commit('INCREMENT');
     },
     decrement({commit}) {
-      commit('DECREMENT')
+      commit('DECREMENT');
     }
   },
   modules: {
