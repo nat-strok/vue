@@ -1,0 +1,8 @@
+export const SET_ALL_POSTS = 'SET_ALL_POSTS'
+export const SET_SINGLE_POST = 'SET_SINGLE_POST'
+export const SET_CURR_USER = 'SET_CURR_USER'
+export const SET_CURR_POSTS = 'SET_CURR_POSTS'
+
+export const SET_IS_LOADED = 'SET_IS_LOADED'
+export const SET_IS_LOADED_USER = 'SET_IS_LOADED_USER'
+export const SET_IS_LOADED_INFO = 'SET_IS_LOADED_INFO'
