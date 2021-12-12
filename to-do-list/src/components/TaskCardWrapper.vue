@@ -1,7 +1,7 @@
 <template>
   <div class="task-cards-box">
 
-    <div v-if="!!customList().length">
+    <div v-if="customList().length">
       <h3>Список задач</h3>
 
       <div :class="['show-row', hideShowRow]" @click="showRow.state = !showRow.state">
@@ -28,7 +28,7 @@
     <div v-else>Здесь пока нет задач</div>
 
     <div :class="[showRow.state ? showRow.row : showRow.col]">
-      <div v-for="task in customList()" :key="task.taskId" class="card">
+      <div v-for="task in searchedList(filteredList())" :key="task.id" class="card">
         <transition name="fade" tag="div" appear>
           <task-card :task="task" />
         </transition>
@@ -119,7 +119,6 @@ export default {
     // фильтр по цвету задачи
     // перебирает результат функции customList(), если есть совпадения поля colorType с элементами массива - такие элементы выводятся
     filteredList() {
-      // const val = this.searchedText.toLowerCase();
       return this.customList().filter(item => {
         if (this.activeColors().includes(item.colorType)) return item;
       })
