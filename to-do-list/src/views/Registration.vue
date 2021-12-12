@@ -93,8 +93,12 @@ export default {
       activeId: state => state.users.activeId
     }),
     isEmailValid() {
-      const emailRegexp = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
-      return emailRegexp.test(this.newUser.email);
+      if (this.newUser.email) {
+        const emailRegexp = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+        return emailRegexp.test(this.newUser.email);
+      } else {
+        return true;
+      }
     },
   },
   methods: {

@@ -5,7 +5,7 @@ export default [{
     description: "1 Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
     img: "https://ru.vuejs.org/images/logo.png",
     taskDate: "11/17/2021, 11:37:39 PM",
-    type: "default",
+    colorType: "default",
     isEdited: false,
     isDone: false,
 }, {
@@ -15,7 +15,7 @@ export default [{
     description: "2 Aliquid assumenda consectetur et impedit inventore iure iusto, mollitia neque non nulla porro provident quaerat quis quisquam ratione similique tempore temporibus vitae?",
     img: "https://ru.vuejs.org/images/logo.png",
     taskDate: "11/17/2021, 11:37:39 PM",
-    type: "default",
+    colorType: "default",
     isEdited: false,
     isDone: false,
 }, {
@@ -25,7 +25,7 @@ export default [{
     description: "3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid assumenda consectetur et impedit inventore iure iusto",
     img: "https://ru.vuejs.org/images/logo.png",
     taskDate: "11/17/2021, 11:37:39 PM",
-    type: "default",
+    colorType: "default",
     isEdited: false,
     isDone: false,
 }, {
@@ -35,7 +35,7 @@ export default [{
     description: "4 Aliquid assumenda consectetur et impedit inventore iure iusto, mollitia neque non nulla porro provident quaerat quis quisquam ratione similique tempore temporibus vitae?",
     img: "https://ru.vuejs.org/images/logo.png",
     taskDate: "11/17/2021, 11:37:39 PM",
-    type: "default",
+    colorType: "default",
     isEdited: false,
     isDone: false,
 }, {
@@ -45,7 +45,7 @@ export default [{
     description: "5 Lorem ipsum dolor sit amet",
     img: "https://ru.vuejs.org/images/logo.png",
     taskDate: "11/17/2021, 11:37:39 PM",
-    type: "default",
+    colorType: "default",
     isEdited: false,
     isDone: false,
 }, {
@@ -55,7 +55,7 @@ export default [{
     description: "6 mollitia neque non nulla porro provident quaerat quis quisquam ratione similique tempore temporibus vitae",
     img: "https://ru.vuejs.org/images/logo.png",
     taskDate: "11/17/2021, 11:37:39 PM",
-    type: "default",
+    colorType: "default",
     isEdited: false,
     isDone: false,
 }];

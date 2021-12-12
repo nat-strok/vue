@@ -22,18 +22,6 @@ export default ({
     todosCount: 6,
     todosHistory: []
   },
-  getters: {
-    currentTasksList(state, getters, rootState) {
-      return state.todos.filter(item => {
-        if (item.userId === rootState.users.activeId && !item.isDone) return item;
-      });
-    },
-    doneTasksList(state, getters, rootState) {
-      return state.todos.filter(item => {
-        if (item.userId === rootState.users.activeId && item.isDone) return item;
-      });
-    },
-  },
   mutations: {
     [SET_TODOS](state, payload) {
       state.todos = payload;
@@ -70,11 +58,11 @@ export default ({
       });
     },
 
-    // меняет значение поля type на принятое из компонента
+    // меняет значение поля colorType на принятое из компонента
     [SET_TODO_TYPE](state, payload) {
       state.todos.forEach((item) => {
         if (item.id === payload.id) {
-          item.type = payload.type;
+          item.colorType = payload.colorType;
         }
       });
     },
@@ -123,11 +111,11 @@ export default ({
         case 'type':
           commit(SET_TODO_TYPE, params.task);
           let newType;
-          if (params.task.type === 'red') {
+          if (params.task.colorType === 'red') {
             newType = 'красный';
-          } else if (params.task.type === 'yellow') {
+          } else if (params.task.colorType === 'yellow') {
             newType = 'желтый';
-          } else if (params.task.type === 'green') {
+          } else if (params.task.colorType === 'green') {
             newType = 'зеленый';
           } else {
             newType = 'нейтральный';

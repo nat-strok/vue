@@ -1,11 +1,11 @@
 <template>
 
-    <div v-bind:class="['task-card', task.type]">
+    <div class="task-card" :class="task.colorType">
 
       <div v-if="task.isDone" class="green-done">{{ "Выполнено" }}</div>
 
       <div v-if="!isEditing">
-        <img class="task-card-img" :src=task.img width="40" height="40" alt="">
+        <img class="task-card-img" @error="replaceByDefault" :src=task.img width="40" height="40" alt="">
         <div class="task-card-name" v-html="task.name"></div>
         <div class="task-card-desc" v-html="task.description"></div>
       </div>
@@ -22,9 +22,9 @@
       </div>
 
       <div class="tasks-type">
-        <div v-for="item in taskType"
-             @click.stop="changeType(item.type)"
-             v-bind:class="[item.type, item.type === task.type ? 'active' : '']">
+        <div v-for="item in taskType" :key="item.name"
+             @click.stop="changeType(item)"
+             v-bind:class="[item.name, item.name === task.colorType ? 'active' : '']">
         </div>
       </div>
 
@@ -51,18 +51,12 @@
 
 <script>
 import CInput from "@/components/forms/CInput";
-import {mapState} from 'vuex';
 import {A_UPDATE_TODOS} from "@/types/actions";
 
 export default {
   name: 'TaskCard',
   components: {
     CInput
-  },
-  computed: {
-    ...mapState({
-      todos: state => state.todos.todos
-    })
   },
   props: {
     task: {
@@ -80,13 +74,18 @@ export default {
         no: '&#10006; Не выполнено'
       },
       taskType: {
-        red: {type: 'red'},
-        yellow: {type: 'yellow'},
-        green: {type: 'green'}
+        red: {name: 'red'},
+        yellow: {name: 'yellow'},
+        green: {name: 'green'}
       }
     };
   },
   methods: {
+
+    // проверяет, загружается ли картинка по ссылке, если нет - подменяет ссылку на ссылку со стандартной картинкой
+    replaceByDefault(e) {
+      e.target.src = 'https://ru.vuejs.org/images/logo.png'
+    },
 
     // меняет отображение кнопок (Действия - Удаление, Редактирование)
     changeBtns() {
@@ -119,10 +118,10 @@ export default {
     // если да - меняет тип на "default"
     // если нет - меняет на выбранный тип
     changeType(item) {
-      if (this.task.type === item) {
-        this.task.type = 'default';
+      if (this.task.colorType === item.name) {
+        this.task.colorType = 'default';
       } else {
-        this.task.type = item;
+        this.task.colorType = item.name;
       }
       this.$store.dispatch(A_UPDATE_TODOS, {act: 'type', task: this.task});
     },

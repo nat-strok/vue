@@ -1,6 +1,6 @@
 <template>
 
-  <div>
+  <div id="outer">
     <div :class="['theme-line', customTheme ? 'coral' : 'green']" @click="changeTheme">{{ customTheme ? "Включить розовую тему" : "Включить зеленую тему" }}</div>
     <theme>
       <div id="app">
@@ -53,6 +53,25 @@ export default {
 <style>
 * {box-sizing: border-box;}
 
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+  width: 7px;
+  background-color: var(--grey-light);
+}
+
+body::-webkit-scrollbar-thumb {
+  width: 7px;
+  background-color: var(--grey);
+}
+
+#outer {
+  position: relative;
+}
+
 .theme-line {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   font-size: var(--size-primary);
@@ -68,24 +87,23 @@ export default {
   cursor: pointer;
   color: var(--black);
   background-color: var(--main-color-light);
+  z-index: 1;
 }
 
 .green {
-  --main-color-primary: rgba(82, 183, 144, 1);
-  --main-color-med: rgba(82, 183, 144, .6);
-  --main-color-light: rgba(82, 183, 144, .4);
-  --main-color-extralight: rgba(82, 183, 144, .1);
-  --rad: 3px;
+  --main-color-primary: #52b790;
+  --main-color-med: #97d4bc;
+  --main-color-light: #bae2d3;
+  --main-color-extralight: #eef8f4;
   --rad-round: 9999px;
 }
 
 .coral {
-  --main-color-primary: rgba(255, 127, 80, 0.9);
-  --main-color-med: rgba(255, 127, 80, 0.6);
-  --main-color-light: rgba(255, 127, 80, 0.4);
-  --main-color-extralight: rgba(255, 127, 80, 0.1);
-  --rad: 3px;
-  --rad-round: 9999px;
+  --main-color-primary: #ff7f50;
+  --main-color-med: #ffb296;
+  --main-color-light: #ffccb9;
+  --main-color-extralight: #fff2ee;
+  --rad-round: 10px;
 }
 
 :root {
@@ -102,21 +120,7 @@ export default {
   --size-primary: 16px;
   --size-med: 14px;
   --size-small: 13px;
-}
-
-body {
-  margin: 0;
-  overflow-x: hidden;
-}
-
-body::-webkit-scrollbar {
-  width: 7px;
-  background-color: var(--grey-light);
-}
-
-body::-webkit-scrollbar-thumb {
-  width: 7px;
-  background-color: var(--grey);
+  --rad: 3px;
 }
 
 #app {

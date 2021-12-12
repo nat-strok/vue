@@ -60,7 +60,7 @@ export default {
 .btn-show {
   position: absolute;
   display: block;
-  top: 40px;
+  top: 20px;
   right: -13px;
   width: 35px;
   height: 35px;
@@ -71,6 +71,7 @@ export default {
   text-align: center;
   line-height: 28px;
   color: var(--white);
+  cursor: pointer;
 }
 
 .sidebar {

@@ -54,7 +54,7 @@ export default {
           description: "",
           img: "",
           taskDate: "",
-          type: "",
+          colorType: "",
           isEdited: false,
           isDone: false,
         },
@@ -70,7 +70,7 @@ export default {
       this.newTask.userId = this.activeUser.id;
       this.newTask.img = !!this.newTask.img ? this.newTask.img : "https://ru.vuejs.org/images/logo.png";
       this.newTask.taskDate = new Date().toLocaleString();
-      this.newTask.type = 'default';
+      this.newTask.colorType = 'default';
       this.newTask.isEdited = false;
       this.newTask.isDone = false;
     },

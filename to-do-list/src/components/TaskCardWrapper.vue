@@ -18,9 +18,9 @@
 
       <div class="type-sort">
         <p>Сортировать по цвету</p>
-        <span v-for="type in colors" :key="type.name"
-              :class="['type-btn-sort', type.name, type.isActive ? 'active' : '']"
-              @click="type.isActive = !type.isActive">
+        <span v-for="item in colors" :key="item.name"
+              :class="['type-btn-sort', item.name, item.isActive ? 'active' : '']"
+              @click="item.isActive = !item.isActive">
         </span>
       </div>
     </div>
@@ -28,9 +28,9 @@
     <div v-else>Здесь пока нет задач</div>
 
     <div :class="[showRow.state ? showRow.row : showRow.col]">
-      <div v-for="task in searchedList(filteredList())" :key="task.taskId" class="card">
+      <div v-for="task in customList()" :key="task.taskId" class="card">
         <transition name="fade" tag="div" appear>
-          <task-card :task="task"/>
+          <task-card :task="task" />
         </transition>
       </div>
     </div>
@@ -41,7 +41,7 @@
 <script>
 import CInput from "@/components/forms/CInput";
 import TaskCard from "@/components/TaskCard";
-import {mapGetters} from 'vuex';
+import {mapState} from 'vuex';
 
 export default {
   name: 'TaskCardWrapper',
@@ -50,10 +50,10 @@ export default {
     TaskCard
   },
   computed: {
-    ...mapGetters ([
-      'currentTasksList',
-      'doneTasksList'
-    ]),
+    ...mapState({
+      todos: state => state.todos.todos,
+      activeId: state => state.users.activeId
+    }),
   },
   data() {
     return {
@@ -83,30 +83,33 @@ export default {
           name: 'default'
         }
       },
-      searchedText: "",
-
-      // выводит отфильтрованные в vuex списки в зависимости от того, какая страница - с выполненными или невыполненными задачами
-      customList: function () {
-        if (this.$route.path === "/todos") {
-          return this.currentTasksList;
-        } else if (this.$route.path === "/todos-completed") {
-          return this.doneTasksList;
-        }
-      },
-
-      // перебирает объект color, собирает в массив названия цветов, которые isActive
-      // (изначально все isActive, по клику на кнопку это свойство переключается true/false)
-      // используется в filteredList
-      activeColors: function () {
-        let colorArr = [];
-        for (let key in this.colors) {
-          if (this.colors[key].isActive) colorArr.push(this.colors[key].name);
-        }
-        return colorArr;
-      }
+      searchedText: ""
     }
   },
   methods: {
+
+    // выводит отфильтрованные списки в зависимости от того, какая страница - с выполненными или невыполненными задачами
+    // customList() {
+    //   return this.todos.filter(item => item.userId === this.activeId && !item.isDone);
+    // },
+    customList() {
+      if (this.$route.path === "/todos") {
+        return this.todos.filter(item => item.userId === this.activeId && !item.isDone);
+      } else if (this.$route.path === "/todos-completed") {
+        return this.todos.filter(item => item.userId === this.activeId && item.isDone);
+      }
+    },
+
+    // перебирает объект color, собирает в массив названия цветов, которые isActive
+    // (изначально все isActive, по клику на кнопку это свойство переключается true/false)
+    // используется в filteredList
+    activeColors() {
+      let colorArr = [];
+      for (let key in this.colors) {
+        if (this.colors[key].isActive) colorArr.push(this.colors[key].name);
+      }
+      return colorArr;
+    },
 
     // проверяет, содержит ли принимаемое выражение value инпута (в дальнейшем используется для searchedList)
     isFind(item) {
@@ -114,11 +117,11 @@ export default {
     },
 
     // фильтр по цвету задачи
-    // перебирает результат функции customList(), если есть совпадения поля type с элементами массива - такие элементы выводятся
+    // перебирает результат функции customList(), если есть совпадения поля colorType с элементами массива - такие элементы выводятся
     filteredList() {
       // const val = this.searchedText.toLowerCase();
       return this.customList().filter(item => {
-        if (this.activeColors().includes(item.type)) return item;
+        if (this.activeColors().includes(item.colorType)) return item;
       })
     },
 
