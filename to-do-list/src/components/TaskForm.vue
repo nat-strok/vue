@@ -47,7 +47,7 @@ export default {
   },
   data() {
     return {
-      newTask: {
+      defaultTask: {
           id: "",
           userId: "",
           name: "",
@@ -58,6 +58,17 @@ export default {
           isEdited: false,
           isDone: false,
         },
+      newTask: {
+        id: "",
+        userId: "",
+        name: "",
+        description: "",
+        img: "",
+        taskDate: "",
+        colorType: "",
+        isEdited: false,
+        isDone: false,
+      },
       wrongImgType: false
     }
   },
@@ -85,14 +96,14 @@ export default {
     // вызывает completeTaskFields (заполнение полей форм не из инпутов)
     // увеличивает на единицу счетчик для ID задач
     // передает данные во vuex (вызывает action A_UPDATE_TODOS)
-    // очищает поля формы
+    // обнуляет поля формы
     onSubmit() {
       if (!this.newTask.img || this.isTrueImg(this.newTask.img)) {
         this.wrongImgType = false;
         this.completeTaskFields();
         let newCount = this.todosCount + 1;
         this.$store.dispatch(A_UPDATE_TODOS, {act: 'add', task: this.newTask, counter: newCount});
-        this.newTask = {};
+        this.newTask = Object.assign({}, this.defaultTask);
       } else {
         this.wrongImgType = true;
       }
